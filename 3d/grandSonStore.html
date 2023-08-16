@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <script src="js/Data/Store3DData.js"></script>
+    <script src="lib/three.js"></script>
+
+    <script src="js/Data/BuildingData.js"></script>
+    <script src="js/objects/Cube.js"></script>
+    <script src="js/objects/StoreShelf.js"></script>
+    <script src="js/objects/Store3D.js"></script>
+    <script src="js/objects/AGVCar.js"></script>
+    <script src="js/objects/StoreArea.js"></script>
+    <script src="js/common/CommonFunction.js"></script>
+
+    <script src="lib/stats.min.js"></script>
+    <script src="js/objects/Wall.js"></script>
+    <script src="js/common/ObjectCombine.js"></script>
+    <script src="lib/ThreeBSP.js"></script>
+    <script src="lib/MTLLoader.js"></script>
+    <script src="lib/OBJLoader.js"></script>
+
+    <script src="lib/EffectComposer.js"></script>
+    <script src="lib/OutlinePass.js"></script>
+    <script src="lib/RenderPass.js"></script>
+    <script src="lib/ShaderPass.js"></script>
+    <script src="lib/CopyShader.js"></script>
+    <script src="js/common/ObjectSelect.js"></script>
+    <script src="lib/jquery-1.11.0.min.js"></script>
+
+    <script src="js/objects/Store.js"></script>
+    <script src="js/objects/StoreGroup.js"></script>
+    <script src="js/objects/StoreGoods.js"></script>
+    <script src="lib/echarts.js"></script>
+    <script src="js/Data/DataShow.js"></script>
+    <script src="js/Data/DataAnalyze.js"></script>
+    <script src="lib/OrbitControls.js"></script>
+    <style>
+        #label {
+            position: absolute;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.6);
+            line-height: 1;
+            color:#000000;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body style="margin: 0;overflow: hidden">
+<div>
+    <div id="container">
+    </div>
+    <div id="label"></div>
+</div>
+
+<script>
+    let store = new Store3D();
+    var type=CommonFunction.getQueryVariable('type');
+    var no=CommonFunction.getQueryVariable('no');
+    store.initSub(type,no);
+    store.startSub();
+    window.addEventListener('resize', this.onWindowResize, false);
+
+    // 窗口变动触发的方法
+    function onWindowResize() {
+         store.camera.aspect = window.innerWidth / window.innerHeight;
+         store.camera.updateProjectionMatrix();
+         store.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+</script>
+</body>
+</html>

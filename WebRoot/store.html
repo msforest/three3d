@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>商店Store</title>
+    <script src="lib/three.js"></script>
+    <script src="lib/jquery-1.11.0.min.js"></script>
+    <script src="lib/stats.min.js"></script>
+    <script src="lib/OrbitControls.js"></script>
+    <script src="lib/FBXLoader.js"></script>
+    <script src="lib/inflate.min.js"></script>
+    <script src="js/Data/Store3DData.js"></script>
+    <script src="lib/ThreeBSP.js"></script>
+    <script src="js/common/CommonFunction.js"></script>
+    <script src="js/common/ObjectCombine.js"></script>
+    <script src="js/objects/Cube.js"></script>
+    <script src="js/objects/Wall.js"></script>
+   
+    <script src="js/Data/BuildingData.js"></script>
+    <script src="js/objects/Store3D.js"></script>
+    <script src="js/objects/StoreArea.js"></script>
+    <script src="js/objects/Store.js"></script>
+    <script src="js/objects/StoreSign.js"></script>
+    <script src="lib/echarts.js"></script>
+    <script src="js/objects/StoreShelf.js"></script>
+    <script src="js/objects/StoreGoods.js?v='1.0.1'"></script>
+    <script src="js/common/ObjectSelect.js"></script>
+    <script src="js/Data/DataShow.js"></script>
+    <script src="js/Data/DataAnalyze.js"></script>
+    <link rel="stylesheet" href="css/store.css">
+    <script src="js/objects/AGVCar.js"></script>
+    <script src="lib/MTLLoader.js"></script>
+    <script src="lib/OBJLoader.js"></script>
+    <script src="js/objects/RouteLine.js"></script>
+    <script src="js/objects/Route.js"></script>
+    <script src="lib/Tween.js"></script>
+    <script src="js/objects/StoreGroup.js"></script>
+    <script src="lib/EffectComposer.js"></script>
+    <script src="lib/OutlinePass.js"></script>
+    <script src="lib/RenderPass.js"></script>
+    <script src="lib/ShaderPass.js"></script>
+    <script src="lib/CopyShader.js"></script>
+    <script src="lib/PointerLockControls.js"></script>
+    <script src="js/objects/StoreGroup.js"></script>
+    <script src="js/objects/Temperature.js"></script>
+</head>
+<body>
+<div class="sidebar">
+    <img id="fps" class="buttonClass" title="性能调试" src="res/icon/fps.svg">
+    <img id="store" class="buttonClass" title="遮罩效果" src="res/icon/store.svg">
+    <img id="group" class="buttonClass" title="显示巷道" src="res/icon/group.svg">   
+    <img id="reset" class="buttonClass" title="复位场景" src="res/icon/reset.svg">
+    <img id="tour" class="buttonClass" title="游览商店&#10;前进：W&#10;后退：S&#10;左：A&#10;右：D&#10;跳跃：Space" src="res/icon/tour.svg">  
+    <img id="gwcid" class="buttonClass" title="购物车" src="res/icon/tour.svg">
+</div>
+<div id="container">
+
+</div>
+<div id="label"></div>
+<script>
+    let store=new Store3D();
+    store.start();
+    document.getElementById("tour").addEventListener('click', function () {
+        store.lockControl();
+    }, false);
+    document.getElementById("fps").addEventListener('click', function () {
+        store.changeStats();
+    }, false);
+    document.getElementById("reset").addEventListener('click', function () {
+        store.orbitControl.reset();
+    }, false);
+    document.getElementById("store").addEventListener('click', function () {
+        store.changeStoreShow();
+    }, false);
+    document.getElementById("group").addEventListener('click', function () {
+        store.changeGroupShow();
+    }, false);
+    document.getElementById("gwcid").addEventListener('click', function () {
+        var gwcs=window.localStorage.getItem('gwcData');
+        try{gwcs=JSON.parse(gwcs);
+        var v="当前购物车：";
+        for(var i=0;i<gwcs.length;i++){            
+            v+=gwcs[i].name+" X "+gwcs[i].count+" , ";
+        }
+        alert(v);}catch(eeeee){}
+    }, false);
+ 
+</script>
+</body>
+</html>

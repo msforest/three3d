@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/subStore.css">
+    <script src="js/Data/Store3DData.js"></script>
+    <script src="lib/three.js"></script>
+
+    <script src="js/Data/BuildingData.js"></script>
+    <script src="js/objects/Cube.js"></script>
+    <script src="js/objects/StoreShelf.js"></script>
+    <script src="js/objects/Store3D.js"></script>
+    <script src="js/objects/AGVCar.js"></script>
+    <script src="js/objects/StoreArea.js"></script>
+    <script src="js/common/CommonFunction.js"></script>
+
+    <script src="lib/stats.min.js"></script>
+    <script src="js/objects/Wall.js"></script>
+    <script src="js/common/ObjectCombine.js"></script>
+    <script src="lib/ThreeBSP.js"></script>
+    <script src="lib/MTLLoader.js"></script>
+    <script src="lib/OBJLoader.js"></script>
+
+    <script src="lib/EffectComposer.js"></script>
+    <script src="lib/OutlinePass.js"></script>
+    <script src="lib/RenderPass.js"></script>
+    <script src="lib/ShaderPass.js"></script>
+    <script src="lib/CopyShader.js"></script>
+    <script src="js/common/ObjectSelect.js"></script>
+    <script src="lib/jquery-1.11.0.min.js"></script>
+
+    <script src="js/objects/Store.js"></script>
+    <script src="js/objects/StoreGroup.js"></script>
+    <script src="js/objects/StoreGoods.js?v='1.0.1'"></script>
+    <script src="lib/echarts.js"></script>
+    <script src="js/Data/DataShow.js"></script>
+    <script src="js/Data/DataAnalyze.js"></script>
+    
+</head>
+
+<body>
+<div class="header">
+    <div class="bg_header">
+        <div class="header_nav fl t_title">
+            商品数据分析
+        </div>
+    </div>
+    <div class="header_nav fl">
+    </div>
+    <div class="header_myself fr t_height">
+        <a class="t_a" href="store.html">返回 &nbsp;</a>
+    </div>
+</div>
+<div class="data_content">
+    <div class="data_main">
+        <div class="main_left fl">
+            <div class="center_text">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i>
+                    <i class="l_t_line"></i>
+                </div>
+
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i>
+                    <i class="r_t_line"></i>
+                </div>
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i>
+                    <i class="b_l_line"></i>
+                </div>
+                <!--右下边框-->
+                <div class="t_line_box">
+                    <i class="r_b_line"></i>
+                    <i class="b_r_line"></i>
+                </div>
+                <div class="main_title">
+                    3D展示
+                </div>
+                <iframe id="container" frameborder="no" style="margin-bottom:-5px;width:100%;height:778px;"></iframe>
+            </div>
+        </div>
+        <div class="main_center fl">
+            <div class="center_text ">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i>
+                    <i class="l_t_line"></i>
+                </div>
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i>
+                    <i class="r_t_line"></i>
+                </div>
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i>
+                    <i class="b_l_line"></i>
+                </div>
+                <!--右下边框-->
+                <div class="t_line_box">
+                    <i class="r_b_line"></i>
+                    <i class="b_r_line"></i>
+                </div>
+                <div class="main_title">
+                    商品详情
+                </div>
+                <div  class="dataShow store">
+                    <!--总容量-，已占容量-->
+                    <div class="binNum">
+                        <div id="totalBinNum" class="totalBinNum left" ></div>
+                        <div id="occurpyBinNum" class="occurpyBinNum right"></div>
+                    </div>
+                    <!--入库出库数量-->
+                    <div class="inOroutNum">
+                        <div class="left con_div_text01 ">
+                            <img src="./res/subStore/入库.svg" class="left text01_img"/>
+                            <div class="left text01_div">
+                                <p>当天进货</p>
+                                <p id="curStoreDayInNum" class="org">12356</p>
+                            </div>
+                        </div>
+                        <div class="left con_div_text01 ">
+                            <img src="./res/subStore/出库.svg" class="left text01_img"/>
+                            <div class="left text01_div">
+                                <p>当天已销售</p>
+                                <p id="curStoreDayOutNum" class="org">12356</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div  class="dataShow group" style="display:none">
+                 
+                    <div class="binNum">
+                        <div id="colTotalBinNum" class="totalBinNum left" ></div>
+                        <div id="colOccurpyBinNum" class="occurpyBinNum right"></div>
+                    </div>
+                   
+                    <div class="inOroutNum">
+                        <div class="left con_div_text01 ">
+                            <img src="./res/subStore/入库.svg" class="left text01_img"/>
+                            <div class="left text01_div">
+                                <p >当天进货</p>
+                                <p id="curGroupDayInNum" class="org">12356</p>
+                            </div>
+                        </div>
+                        <div class="left con_div_text01 ">
+                            <img src="./res/subStore/出库.svg" class="left text01_img"/>
+                            <div class="left text01_div">
+                                <p>当天已销售</p>
+                                <p id="curGroupDayOutNum" class="org">12356</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div  class="dataShow bin" style="display:none">
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div id="label"></div>
+</div>
+
+
+<script>
+    var type=CommonFunction.getQueryVariable('type');
+    var no=CommonFunction.getQueryVariable('no');
+
+    document.getElementById("container").src="grandSonStore.html?type="+type+"&no="+no;
+
+    let dataShow=new DataShow(type,no);
+    if(type=="Store")
+    {
+        $('.store').css('display', 'block');
+        $('.group').css('display', 'none');
+        $('.bin').css('display', 'none');
+        dataShow.initStoreData();
+        dataShow.refreshStoreData();
+        setInterval(dataShow.refreshStoreData.bind(dataShow),5000);
+    }
+    else if(type=="StoreGroup")
+    {
+        $('.store').css('display', 'none');
+        $('.group').css('display', 'block');
+        $('.bin').css('display', 'none');
+        dataShow.initGroupData();
+        dataShow.refreshGroupData();
+        setInterval(dataShow.refreshGroupData.bind(dataShow),5000);
+    }
+    else if(type=="StoreBin")
+    {
+        $('.store').css('display', 'none');
+        $('.group').css('display', 'none');
+        $('.bin').css('display', 'block');
+    }
+</script>
+</body>
+</html>
